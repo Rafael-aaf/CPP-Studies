@@ -4,6 +4,7 @@ In this repository I'll add files of my C++ studies!
 ## Contents
 - [Templates](#templates)
 - [Data Structures](#data-structures)
+- [Classes](#classes)
 
 ## Templates
 ### Function Templates
@@ -47,3 +48,35 @@ void reverse2(){
 	head = prev;
 }
 ```
+
+## Classes
+### Class Visibility
+
+In C++, you can control the accessibility of a class’s members with the keywords ```public``` ```private``` and ```protected```. This is useful to not only organize the code, but to also inform other developers, that might read it, what can't be modified.
+
+For ```public```, it's usually the part of the class that can be manipulated, it allows anything on it to be accessed throughout the whole code, from other classes to the ```main()```. ```private``` members are more restricted and can only be accessed in the class that it was used. Lastly, ```protected``` is a middle point, it can't be accessed by the main, but it can be accessed by the class it was created and classes that inherite this class. Additionally, classes or functions declared as ```friend``` can access even private and protected members.
+
+The following code can be found [here](https://github.com/Rafael-aaf/CPP-Studies/blob/341f8b3c9c020a9321c8841fa67e6bc0d829786a/Classes/Lista%20Encadeada%20Simples.cpp) and shows how to use these keywords on a linked list:
+
+```cpp
+class Lista{
+private:
+	No* inicio;
+	
+public:
+	Lista(){
+		inicio = nullptr;
+	}
+	
+public:
+	void print(){
+		No* temp = inicio;
+		std::cout << "Lista: \n";
+		while(temp != nullptr){
+			std::cout << temp -> val << "\n";
+			temp = temp -> ptr;
+		}
+	}
+```
+
+Inside the ```public``` section there is a constructor and in another one a function to print the list. In ```private``` section there is a declaration of "inicio" (or head, in english). Keeping it private is useful because it prevents external code from changing it, since the list wouldn't work without a head.
